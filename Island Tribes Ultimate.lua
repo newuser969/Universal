@@ -170,7 +170,7 @@ Mic:AddToggle({
 	Name = "Auto-Sell-Iron",
 	Default = false,
 	Callback = function(Value)
-    _G.AutoSellRuby = Value
+    _G.AutoSellIron = Value
     while _G.AutoSellIron do
 wait(.1)
 local args = {
