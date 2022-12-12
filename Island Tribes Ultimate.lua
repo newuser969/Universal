@@ -21,6 +21,8 @@ _G.Speed = false
 _G.AutoSellDiamond = false
 _G.AutoSellRuby = false
 _G.AutoSellZenyte = false
+_G.AutoSellGold = false
+_G.AutoSellIron = false
 --//Functions
 function GetClosestTorso()
    local closest
@@ -169,7 +171,7 @@ Mic:AddToggle({
 	Default = false,
 	Callback = function(Value)
     _G.AutoSellRuby = Value
-    while _G.AutoSellRuby do
+    while _G.AutoSellIron do
 wait(.1)
 local args = {
     [1] = "Resource Trader",
@@ -184,8 +186,8 @@ Mic:AddToggle({
 	Name = "Auto-Sell-Gold",
 	Default = false,
 	Callback = function(Value)
-    _G.AutoSellRuby = Value
-    while _G.AutoSellRuby do
+    _G.AutoSellGold = Value
+    while _G.AutoSellGold do
 wait(.1)
 local args = {
     [1] = "Resource Trader",
