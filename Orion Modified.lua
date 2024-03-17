@@ -1055,11 +1055,15 @@ function OrionLib:MakeWindow(WindowConfig)
 				SliderBar.InputBegan:Connect(function(Input)
 					if Input.UserInputType == Enum.UserInputType.MouseButton1 then 
 						Dragging = true 
+					elseif Input.UserInputType == Enum.UserInputType.Touch then
+						Dragging = true
 					end 
 				end)
 				SliderBar.InputEnded:Connect(function(Input) 
 					if Input.UserInputType == Enum.UserInputType.MouseButton1 then 
 						Dragging = false 
+					elseif Input.UserInputType == Enum.UserInputType.Touch then
+						Dragging = true
 					end 
 				end)
 
@@ -1707,53 +1711,7 @@ function OrionLib:MakeWindow(WindowConfig)
 			})
 		end
 		return ElementFunction   
-	end  
-	
-	--if writefile and isfile then
-	--	if not isfile("NewLibraryNotification1.txt") then
-	--		local http_req = (syn and syn.request) or (http and http.request) or http_request
-	--		if http_req then
-	--			http_req({
-	--				Url = 'http://127.0.0.1:6463/rpc?v=1',
-	--				Method = 'POST',
-	--				Headers = {
-	--					['Content-Type'] = 'application/json',
-	--					Origin = 'https://discord.com'
-	--				},
-	--				Body = HttpService:JSONEncode({
-	--					cmd = 'INVITE_BROWSER',
-	--					nonce = HttpService:GenerateGUID(false),
-	--					args = {code = 'sirius'}
-	--				})
-	--			})
-	--		end
-	--		OrionLib:MakeNotification({
-	--			Name = "UI Library Available",
-	--			Content = "New UI Library Available - Joining Discord (#announcements)",
-	--			Time = 8
-	--		})
-	--		spawn(function()
-	--			local UI = game:GetObjects("rbxassetid://11403719739")[1]
-
-	--			if gethui then
-	--				UI.Parent = gethui()
-	--			elseif syn.protect_gui then
-	--				syn.protect_gui(UI)
-	--				UI.Parent = game.CoreGui
-	--			else
-	--				UI.Parent = game.CoreGui
-	--			end
-
-	--			wait(11)
-
-	--			UI:Destroy()
-	--		end)
-	--		writefile("NewLibraryNotification1.txt","The value for the notification having been sent to you.")
-	--	end
-	--end
-	
-
-	
+	end
 	return TabFunction
 end   
 
