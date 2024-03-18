@@ -667,7 +667,7 @@ function OrionLib:MakeWindow(WindowConfig)
 			if MainWindow.Visible == false then
 				MainWindow.Visible = true
 			else
-				MainWindow.Visible == false
+				MainWindow.Visible = false
 			end
 		end)
 	end
