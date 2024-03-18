@@ -647,7 +647,7 @@ function OrionLib:MakeWindow(WindowConfig)
 
 	
 	if not game.CoreGui:FindFirstChild("UI") then
-		local QuickCapture = Instance.new("TextButton", CoreGui)
+		local QuickCapture = Instance.new("TextButton", game.CoreGui)
 		QuickCapture.Name = "UI"
 		QuickCapture.BackgroundColor3 = Color3.fromRGB(46, 46, 47)
 		QuickCapture.BackgroundTransparency = 0.14
@@ -662,7 +662,7 @@ function OrionLib:MakeWindow(WindowConfig)
 		local UICorner = Instance.new("UICorner", QuickCapture)
 		UICorner.Name = "Corner"
 		UICorner.CornerRadius = UDim.new(1, 0)
-		
+
 		QuickCapture.MouseButton1Click:Connect(function()
 			if MainWindow.Visible == false then
 				MainWindow.Visible = true
