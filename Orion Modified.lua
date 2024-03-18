@@ -662,15 +662,15 @@ function OrionLib:MakeWindow(WindowConfig)
 		local UICorner = Instance.new("UICorner", QuickCapture)
 		UICorner.Name = "Corner"
 		UICorner.CornerRadius = UDim.new(1, 0)
+		
+		QuickCapture.MouseButton1Click:Connect(function()
+			if MainWindow.Visible == false then
+				MainWindow.Visible = true
+			else
+				MainWindow.Visible == false
+			end
+		end)
 	end
-
-	QuickCapture.MouseButton1Click:Connect(function()
-		if MainWindow.Visible == false then
-			MainWindow.Visible = true
-		else
-			MainWindow.Visible == false
-		end
-	end)
 
 	AddConnection(CloseBtn.MouseButton1Up, function()
 		MainWindow.Visible = false
