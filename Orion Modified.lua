@@ -645,14 +645,36 @@ function OrionLib:MakeWindow(WindowConfig)
 
 	MakeDraggable(DragPoint, MainWindow)
 
+	
+	if not game.CoreGui:FindFirstChild("UI") then
+		local QuickCapture = Instance.new("TextButton", CoreGui)
+		QuickCapture.Name = "UI"
+		QuickCapture.BackgroundColor3 = Color3.fromRGB(46, 46, 47)
+		QuickCapture.BackgroundTransparency = 0.14
+		QuickCapture.Position = UDim2.new(0.489, 0, 0, 0)
+		QuickCapture.Size = UDim2.new(0, 32, 0, 33)
+		QuickCapture.Font = Enum.Font.SourceSansBold
+		QuickCapture.Text = "OR"
+		QuickCapture.TextColor3 = Color3.fromRGB(255, 255, 255)
+		QuickCapture.TextSize = 20.000
+		QuickCapture.TextWrapped = true
+		QuickCapture.Draggable = false
+		local UICorner = Instance.new("UICorner", QuickCapture)
+		UICorner.Name = "Corner"
+		UICorner.CornerRadius = UDim.new(1, 0)
+	end
+
+	QuickCapture.MouseButton1Click:Connect(function()
+		if MainWindow.Visible == false then
+			MainWindow.Visible = true
+		else
+			MainWindow.Visible == false
+		end
+	end)
+
 	AddConnection(CloseBtn.MouseButton1Up, function()
 		MainWindow.Visible = false
 		UIHidden = true
-		OrionLib:MakeNotification({
-			Name = "Interface Hidden",
-			Content = "Tap RightShift to reopen the interface",
-			Time = 5
-		})
 		WindowConfig.CloseCallback()
 	end)
 
