@@ -644,32 +644,37 @@ function OrionLib:MakeWindow(WindowConfig)
 	end	
 
 	MakeDraggable(DragPoint, MainWindow)
-
 	
-	if not game.CoreGui:FindFirstChild("UI") then
-		local QuickCapture = Instance.new("TextButton", game.CoreGui)
-		QuickCapture.Name = "UI"
-		QuickCapture.BackgroundColor3 = Color3.fromRGB(46, 46, 47)
-		QuickCapture.BackgroundTransparency = 0.14
-		QuickCapture.Position = UDim2.new(0.489, 0, 0, 0)
-		QuickCapture.Size = UDim2.new(0, 32, 0, 33)
-		QuickCapture.Font = Enum.Font.SourceSansBold
-		QuickCapture.Text = "OR"
-		QuickCapture.TextColor3 = Color3.fromRGB(255, 255, 255)
-		QuickCapture.TextSize = 20.000
-		QuickCapture.TextWrapped = true
-		QuickCapture.Draggable = false
-		local UICorner = Instance.new("UICorner", QuickCapture)
-		UICorner.Name = "Corner"
-		UICorner.CornerRadius = UDim.new(1, 0)
+	local IsOnMobile = table.find({Enum.Platform.IOS, Enum.Platform.Android}, UserInputService:GetPlatform())
 
-		QuickCapture.MouseButton1Click:Connect(function()
-			if MainWindow.Visible == false then
-				MainWindow.Visible = true
-			else
-				MainWindow.Visible = false
-			end
-		end)
+	if IsOnMobile then
+		if not game.CoreGui:FindFirstChild("Show") then
+			local ScreenGui = Instance.new("ScreenGui", game.CoreGui)
+			ScreenGui.Name = "Show"
+			local QuickCapture = Instance.new("TextButton", ScreenGui)
+			QuickCapture.Name = "UI"
+			QuickCapture.BackgroundColor3 = Color3.fromRGB(46, 46, 47)
+			QuickCapture.BackgroundTransparency = 0.14
+			QuickCapture.Position = UDim2.new(0.489, 0, 0, 0)
+			QuickCapture.Size = UDim2.new(0, 32, 0, 33)
+			QuickCapture.Font = Enum.Font.SourceSansBold
+			QuickCapture.Text = "OR"
+			QuickCapture.TextColor3 = Color3.fromRGB(255, 255, 255)
+			QuickCapture.TextSize = 20.000
+			QuickCapture.TextWrapped = true
+			QuickCapture.Draggable = true
+			local UICorner = Instance.new("UICorner", QuickCapture)
+			UICorner.Name = "Corner"
+			UICorner.CornerRadius = UDim.new(1, 0)
+
+			QuickCapture.MouseButton1Click:Connect(function()
+				if MainWindow.Visible == false then
+					MainWindow.Visible = true
+				else
+					MainWindow.Visible = false
+				end
+			end)
+		end
 	end
 
 	AddConnection(CloseBtn.MouseButton1Up, function()
