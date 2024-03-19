@@ -4,6 +4,7 @@ local RunService = game:GetService("RunService")
 local LocalPlayer = game:GetService("Players").LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
 local HttpService = game:GetService("HttpService")
+local IsOnMobile = table.find({Enum.Platform.IOS, Enum.Platform.Android}, UserInputService:GetPlatform())
 
 local OrionLib = {
 	Elements = {},
@@ -645,28 +646,23 @@ function OrionLib:MakeWindow(WindowConfig)
 
 	MakeDraggable(DragPoint, MainWindow)
 	
-	local IsOnMobile = table.find({Enum.Platform.IOS, Enum.Platform.Android}, UserInputService:GetPlatform())
-
 	if IsOnMobile then
 		if not game.CoreGui:FindFirstChild("Show") then
 			local ScreenGui = Instance.new("ScreenGui", game.CoreGui)
 			ScreenGui.Name = "Show"
 			local QuickCapture = Instance.new("TextButton", ScreenGui)
 			QuickCapture.Name = "UI"
-			QuickCapture.BackgroundColor3 = Color3.fromRGB(46, 46, 47)
+			QuickCapture.BackgroundColor3 = Color3.fromRGB(85, 0, 255)
 			QuickCapture.BackgroundTransparency = 0.14
-			QuickCapture.Position = UDim2.new(0.489, 0, 0, 0)
-			QuickCapture.Size = UDim2.new(0, 32, 0, 33)
+			QuickCapture.Position = UDim2.new(0.465, 0, 0, 40)
+			QuickCapture.Size = UDim2.new(0, 100, 0, 33)
 			QuickCapture.Font = Enum.Font.SourceSansBold
-			QuickCapture.Text = "OR"
-			QuickCapture.TextColor3 = Color3.fromRGB(255, 255, 255)
+			QuickCapture.Text = "O/C"
+			QuickCapture.TextColor3 = Color3.fromRGB(255, 0, 0)
 			QuickCapture.TextSize = 20.000
 			QuickCapture.TextWrapped = true
 			QuickCapture.Draggable = true
-			local UICorner = Instance.new("UICorner", QuickCapture)
-			UICorner.Name = "Corner"
-			UICorner.CornerRadius = UDim.new(1, 0)
-
+			
 			QuickCapture.MouseButton1Click:Connect(function()
 				if MainWindow.Visible == false then
 					MainWindow.Visible = true
