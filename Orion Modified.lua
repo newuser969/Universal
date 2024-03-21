@@ -100,20 +100,20 @@ local function MakeDraggable(DragPoint, Main)
 	pcall(function()
 		local Dragging, DragInput, MousePos, FramePos = false
 		AddConnection(DragPoint.InputBegan, function(Input)
-			if Input.UserInputType == Enum.UserInputType.MouseButton1 then
+			if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
 				Dragging = true
 				MousePos = Input.Position
 				FramePos = Main.Position
 
 				Input.Changed:Connect(function()
-					if Input.UserInputState == Enum.UserInputState.End then
+					if Input.UserInputState == Enum.UserInputState.End or Input.UserInputState == Enum.UserInputType.Touch then
 						Dragging = false
 					end
 				end)
 			end
 		end)
 		AddConnection(DragPoint.InputChanged, function(Input)
-			if Input.UserInputType == Enum.UserInputType.MouseMovement then
+			if Input.UserInputType == Enum.UserInputType.MouseMovement or Input.UserInputType == Enum.UserInputType.Touch then
 				DragInput = Input
 			end
 		end)
@@ -660,10 +660,11 @@ function OrionLib:MakeWindow(WindowConfig)
 			QuickCapture.Text = "O/C"
 			QuickCapture.TextColor3 = Color3.fromRGB(255, 0, 0)
 			QuickCapture.TextSize = 20.000
+			QuickCapture.Style = Enum.ButtonStyle.RobloxButtonDefault
 			QuickCapture.TextWrapped = true
 			QuickCapture.Draggable = true
 			
-			QuickCapture.MouseButton1Click:Connect(function()
+			QuickCapture.TouchTap:Connect(function()
 				if MainWindow.Visible == false then
 					MainWindow.Visible = true
 				else
