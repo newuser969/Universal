@@ -5,6 +5,7 @@ local LocalPlayer = game:GetService("Players").LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
 local HttpService = game:GetService("HttpService")
 local IsOnMobile = table.find({Enum.Platform.IOS, Enum.Platform.Android}, UserInputService:GetPlatform())
+local UserId = 6018
 
 local OrionLib = {
 	Elements = {},
@@ -557,7 +558,7 @@ function OrionLib:MakeWindow(WindowConfig)
 				Size = UDim2.new(0, 32, 0, 32),
 				Position = UDim2.new(0, 10, 0.5, 0)
 			}), {
-				SetProps(MakeElement("Image", "https://tr.rbxcdn.com/30DAY-AvatarHeadshot-7BA5B639A618F573C9A9561C6C23BF4E-Png/150/150/AvatarHeadshot/Png/noFilter".. "Null" .."&width=420&height=420&format=png"), {
+				SetProps(MakeElement("Image", "https://www.roblox.com/headshot-thumbnail/image?userId=" .. UserId .. "Null" .."&width=420&height=420&format=png"), {
 					Size = UDim2.new(1, 0, 1, 0)
 				}),
 				AddThemeObject(SetProps(MakeElement("Image", "rbxassetid://4031889928"), {
