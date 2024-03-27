@@ -107,7 +107,7 @@ local function MakeDraggable(DragPoint, Main)
 				FramePos = Main.Position
 
 				Input.Changed:Connect(function()
-					if Input.UserInputState == Enum.UserInputState.End or Input.UserInputState == Enum.UserInputType.Touch then
+					if Input.UserInputState == Enum.UserInputState.End then
 						Dragging = false
 					end
 				end)
@@ -1078,25 +1078,17 @@ function OrionLib:MakeWindow(WindowConfig)
 				}), "Second")
 
 				SliderBar.InputBegan:Connect(function(Input)
-					if UserInputService.TouchEnabled then
-						if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then 
-							Dragging = true 
-						end 
-					elseif Input.UserInputType == Enum.UserInputType.MouseButton1 then
-						Dragging = true
+					if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then 
+						Dragging = true 
 					end
 				end)
 				SliderBar.InputEnded:Connect(function(Input)
-					if UserInputService.TouchEnabled then
-						if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then 
-							Dragging = false 
-						end 
-					elseif Input.UserInputType == Enum.UserInputType.MouseButton1 then
-						Dragging = false
+					if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then 
+						Dragging = false 
 					end
 				end)
 				UserInputService.InputChanged:Connect(function(Input)
-					if Dragging and Input.UserInputType == Enum.UserInputType.MouseMovement or Input.UserInputType == Enum.UserInputType.Touch then 
+					if Dragging and Input.UserInputType == Enum.UserInputType.MouseMovement then 
 						local SizeScale = math.clamp((Input.Position.X - SliderBar.AbsolutePosition.X) / SliderBar.AbsoluteSize.X, 0, 1)
 						Slider:Set(SliderConfig.Min + ((SliderConfig.Max - SliderConfig.Min) * SizeScale)) 
 						SaveCfg(game.GameId)
