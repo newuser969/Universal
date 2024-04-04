@@ -16,10 +16,10 @@ local OrionLib = {
 		Default = {
 			Main = Color3.fromRGB(25, 25, 25),
 			Second = Color3.fromRGB(32, 32, 32),
-			Stroke = Color3.fromRGB(60, 60, 60),
-			Divider = Color3.fromRGB(60, 60, 60),
-			Text = Color3.fromRGB(240, 240, 240),
-			TextDark = Color3.fromRGB(150, 150, 150)
+			Stroke = Color3.fromRGB(5, 5, 5),
+			Divider = Color3.fromRGB(5, 5, 5),
+			Text = Color3.fromRGB(255, 255, 255),
+			TextDark = Color3.fromRGB(255, 255, 255)
 		}
 	},
 	SelectedTheme = "Default",
@@ -663,9 +663,9 @@ function OrionLib:MakeWindow(WindowConfig)
 			QuickCapture.TextSize = 20.000
 			QuickCapture.Style = Enum.ButtonStyle.RobloxButtonDefault
 			QuickCapture.TextWrapped = true
-			QuickCapture.Draggable = true
+			QuickCapture.Draggable = false
 			
-			QuickCapture.TouchTap:Connect(function()
+			QuickCapture.MouseButton1Click:Connect(function()
 				if MainWindow.Visible == false then
 					MainWindow.Visible = true
 				else
