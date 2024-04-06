@@ -24,7 +24,7 @@ local OrionLib = {
         Nightmare = {
             Main = Color3.fromRGB(0, 0, 0),
 			Second = Color3.fromRGB(32, 32, 32),
-			Stroke = Color3.fromRGB(255, 0, 0),
+			Stroke = Color3.fromRGB(166, 0, 255),
 			Divider = Color3.fromRGB(60, 60, 60),
 			Text = Color3.fromRGB(255, 255, 255),
 			TextDark = Color3.fromRGB(255, 255, 255)
@@ -685,15 +685,19 @@ function OrionLib:MakeWindow(WindowConfig)
 
 	AddConnection(CloseBtn.MouseButton1Up, function()
 		MainWindow.Visible = false
-		UIHidden = true
-		WindowConfig.CloseCallback()
+        if not IsOnMobile then
+		    UIHidden = true
+		    WindowConfig.CloseCallback()
+        end
 	end)
 
-	AddConnection(UserInputService.InputBegan, function(Input)
-		if Input.KeyCode == Enum.KeyCode.H and UIHidden then
-			MainWindow.Visible = true
-		end
-	end)
+    if not IsOnMobile then
+        AddConnection(UserInputService.InputBegan, function(Input)
+            if Input.KeyCode == Enum.KeyCode.RightShift and UIHidden then
+                MainWindow.Visible = true
+            end
+        end)
+    end
 
 	AddConnection(MinimizeBtn.MouseButton1Up, function()
 		if Minimized then
